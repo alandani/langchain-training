@@ -18,7 +18,7 @@ if __name__ == "__main__":
         """
 
     summary_prompt_template = PromptTemplate(
-        input_variabels=["info"], template=summary_template
+        input_variables=["info"], template=summary_template
     )
 
     llm = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
