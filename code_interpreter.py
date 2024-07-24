@@ -6,6 +6,7 @@ from langchain.agents import (
 )
 from langchain import hub
 from langchain_experimental.tools import PythonREPLTool
+from langchain_experimental.agents.agent_toolkits import create_csv_agent
 
 load_dotenv()
 
@@ -26,6 +27,9 @@ def main():
 
     tools = [PythonREPLTool()]
 
+
+    # ========== Python agent executor =========
+    
     python_agent = create_react_agent(
         prompt=prompt,
         llm=ChatOpenAI(temperature=0, model="gpt-4o-mini"),
@@ -34,10 +38,24 @@ def main():
 
     python_agent_executor = AgentExecutor(agent=python_agent, tools=tools, verbose=True)
 
-    user_command = """generate and save in 'outputs' directory 2 qrcodes that point to www.google.com, 
+    user_command_python = """generate and save in 'outputs' directory 2 qrcodes that point to www.google.com, 
     you have qrcode package already"""
 
-    python_agent_executor.invoke({"input": user_command})
+    python_agent_executor.invoke({"input": user_command_python})
+
+
+     # ========== CSV agent executor =========
+
+    csv_agent_executor: AgentExecutor = create_csv_agent(
+        llm=ChatOpenAI(temperature=0, model="gpt-4o-mini"),
+        path="docs/episode_info.csv",
+        verbose=True,
+        allow_dangerous_code=True
+    )
+
+    user_command_csv = """how many columns are in file episode_info.csv"""
+
+    csv_agent_executor.invoke({"input": user_command_csv})
 
 
 if __name__ == "__main__":
