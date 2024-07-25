@@ -41,13 +41,13 @@ def main():
     user_command_python = """generate and save in 'outputs' directory 2 qrcodes that point to www.google.com, 
     you have qrcode package already"""
 
-    python_agent_executor.invoke({"input": user_command_python})
+    # python_agent_executor.invoke({"input": user_command_python})
 
 
      # ========== CSV agent executor =========
 
-    csv_agent_executor: AgentExecutor = create_csv_agent(
-        llm=ChatOpenAI(temperature=0, model="gpt-4o-mini"),
+    csv_agent_executor = create_csv_agent(
+        llm=ChatOpenAI(temperature=0, model="gpt-3.5-turbo"),
         path="docs/episode_info.csv",
         verbose=True,
         allow_dangerous_code=True
