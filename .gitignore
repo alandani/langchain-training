@@ -135,5 +135,5 @@ dmypy.json
 .pyre/
 
 # Misc
-docs
+data
 outputs

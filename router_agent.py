@@ -40,7 +40,7 @@ def main():
 
     csv_agent_executor = create_csv_agent( 
         llm=ChatOpenAI(temperature=0, model="gpt-3.5-turbo"),
-        path="docs/episode_info.csv",
+        path="data/episode_info.csv",
         verbose=True,
         allow_dangerous_code=True,
     )
