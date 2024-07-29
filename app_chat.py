@@ -9,8 +9,6 @@ load_dotenv()
 
 st.title("ChatGPT-like clone")
 
-# openai_api_key = "sk-proj-YSELmKxl31KEEydnjzE4T3BlbkFJWGWqCrqOv32OsMEyoa3T"
-
 def get_response(user_query, chat_history):
     template = """
     You are a helpful assistant. Answer the following questions considering the history of the conversation:
